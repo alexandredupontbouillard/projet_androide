@@ -10,9 +10,9 @@ import graphviz as pgv
 
 #Pour la lecture de fichier on utilisera le format suivant :
 #1) c chaine_de_caractère  ->  sera ignoré par la lecture de fichier, interprété comme un commentaire
-#2) p N_noeud N_stoc N_actions N_redirection -> permettra de donner le nombre de noeud,d'actions, et de transitions stochastiques dans le graphe
+#2) p N_noeud N_stoc N_actions N_redirection -> permettra de donner le nombre de noeud,d'actions, et de noeuds chance dans le graphe
 #3) a n1 n2 poid  -> représentera une action pouvant être faites en n1 amenant au noeud stochastique n2 avec un certain poid
-#4) e n1 n2 proba -> représentera une redirection stochastique faites en n1 amenant au choix n2 avec une certaine probabilité
+#4) e n1 n2 proba -> représentera un tirage chance fait en n1 amenant au choix n2 avec une certaine probabilité
 # on fera attention à suivre l'orde c puis p puis a puis e
     
 
@@ -67,12 +67,38 @@ def afficheGraphe(l_actions,l_redirections, N_noeud, N_actions):
     
     graph.view()
 
+#renvoit une liste de matrices, une matrice pour chaque action
+#et un vecteur de coût pour chaques actions
+def modelMDP(actions,redirections,N_noeud,N_actions):
+    liste_actions = np.zeros((N_actions,N_noeud,N_noeud))
+    cout = np.zeros(N_actions)
+    for i in range(N_actions):
+        cout[actions[i][1]-1] = actions[i][2]
+        for j in range(len(redirections)):
+            if(redirections[j][0]-1==i):
+            
+                liste_actions[i][actions[i][0]-1][redirections[j][1]-1]=redirections[j][2]
+    return liste_actions,cout
+
+#retourne une matrice a_ij = 1 si l'action i est accessible depuis le sommet j
+#et une seconde matrice m_sa = p(s|a)     
+def modelSTAUFFER(actions,redirections,N_noeud,N_actions):
+    matrice_action = np.zeros((N_actions,N_noeud))
+    matrice_p_s_a = np.zeros((N_noeud,N_actions))
+    for i in range(N_actions):
+        matrice_action[actions[i][1]-1][actions[i][0]-1]=1
+    for j in range(len(redirections)):
+        matrice_p_s_a[redirections[j][1]-1][redirections[j][0]-1] = redirections[j][2]
+    return matrice_action,matrice_p_s_a
+    
+
+
+ 
 actions,redirections,N_noeud,N_actions=lire_graphe('graphe_test.txt')
 
-afficheGraphe(actions,redirections,N_noeud,N_actions)
-    
-    
-    
-    
-    
+#afficheGraphe(actions,redirections,N_noeud,N_actions)   
+
+#liste_actions, cout = modelMDP(actions,redirections,N_noeud,N_actions)
+m1,m2 = modelSTAUFFER(actions,redirections,N_noeud,N_actions)
+
     
