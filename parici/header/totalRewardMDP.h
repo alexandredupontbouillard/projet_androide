@@ -29,7 +29,7 @@ Copyright 2019 Emmanuel Hyon, Alain Jean-Marie*/
  * This class is inherited from the abstract class genericMDP.
  */
 
-class totalRewardMDP : public genericMDP
+class totalRewardMDP: public genericMDP
 {
 public:
 
@@ -96,18 +96,18 @@ public:
     void writeMDP();
     
    
- /**
-  * @brief A function to solve (discrete time) MDP using value iteration algorithm.
-  * @author Hyon
-  * @version 0.1
-  * @date feb 2019
-  * @param epsilon double precision of the solution
-  * @param maxIter int : the maximum number of iterations.
-  * @return solutionMDP object.
-  */
-  solutionMDP* valueIteration(double epsilon, int maxIter);
+    /**
+    * @brief A function to solve (discrete time) MDP using value iteration algorithm.
+    * @author Hyon
+    * @version 0.1
+    * @date feb 2019
+    * @param epsilon double precision of the solution
+    * @param maxIter int : the maximum number of iterations.
+    * @return solutionMDP object.
+    */
+    solutionMDP* valueIteration(double epsilon, int maxIter);
   
-   /**
+    /**
     * @brief A function to solve (discrete time) MDP using value iteration algorithm with Gauss Seidel improvement.
     * @author Hyon
     * @version 0.1
@@ -115,11 +115,11 @@ public:
     * @param epsilon double precision of the solution
     * @param maxIter int : the maximum number of iterations.
     * @return solutionMDP object.
-   */
-   solutionMDP* valueIterationGS(double epsilon, int maxIter);
+    */
+    solutionMDP* valueIterationGS(double epsilon, int maxIter);
    
    
-   /**
+    /**
     * @brief A function to solve (discrete time) MDP using policy iteration algorithm.
     * @author Hyon
     * @version 0.1
@@ -127,26 +127,36 @@ public:
     * @param maxIter int : the maximum number of iterations.
     * @return solutionMDP object.
     * @warning not fully implemented
-  */
-  solutionMDP* policyIteration(int maxIter) ;
+    */
+    solutionMDP* policyIteration(int maxIter) ;
    
-  /**
-   * @brief A function to solve (discrete time) MDP using modified policy iteration algorithm.
-   * @author Hyon
-   * @version 0.1
-   * @date Feb 2019
-   * @param epsilon double the precision in the outer loop
-   * @param maxIter int : the maximum number of iterations.
-   * @param delta precision in the inner loop
-   * @param maxInIter nb iter max in the inner loop
-   * @return solutionMDP object.
-   *
-   * also called hybrid value iteration in Powell
-   *
-  */
-  solutionMDP* policyIterationModified(double epsilon, int maxIter, double delta, int maxInIter);
+    /**
+    * @brief A function to solve (discrete time) MDP using modified policy iteration algorithm.
+    * @author Hyon
+    * @version 0.1
+    * @date Feb 2019
+    * @param epsilon double the precision in the outer loop
+    * @param maxIter int : the maximum number of iterations.
+    * @param delta precision in the inner loop
+    * @param maxInIter nb iter max in the inner loop
+    * @return solutionMDP object.
+    *
+    * also called hybrid value iteration in Powell
+    *
+    */
+    solutionMDP* policyIterationModified(double epsilon, int maxIter, double delta, int maxInIter);
 
-
+    /**
+    * @brief A function to evaluate the cost of a policy with iteration of the power.
+    * @author Hyon
+    * @version 0.1
+    * @date april 2019
+    * @param policy solutionMDP : object to get of the action
+    * @param maxIter int : the maximum number of iterations.
+    * @param epsilon double.
+    * @return double.
+    */
+    double* policyCost(solutionMDP *policy,double epsilon,int maxIter);
 
 protected:
     std::string type_c;         /**< MDP criteria: here "total reward" */

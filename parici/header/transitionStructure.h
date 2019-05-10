@@ -16,10 +16,11 @@ Copyright 2015 Alain Jean-Marie, Jean-Michel Fourneau, Jean-Marc Vincent, Issam 
 #ifndef TRANSITIONSTRUCTURE_H
 #define TRANSITIONSTRUCTURE_H
 
-#include "../marmoteConstants.h"
-#include "../Distribution/discreteDistribution.h"
+#include "marmoteConstants.h"
+#include "discreteDistribution.h"
 #include <stdio.h>
 #include <string>
+#include "transitionStructure.h"
 
 /**
  * @brief Abstract class for transition structures. These are structures which describe

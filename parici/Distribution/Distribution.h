@@ -20,7 +20,7 @@ Copyright 2015 Alain Jean-Marie, Jean-Michel Fourneau, Jean-Marc Vincent, Issam 
 #include <stdio.h>
 #include <string>
 #include <vector>
-#include "../marmoteConstants.h"
+#include "marmoteConstants.h"
 
 // Definition of +oo for durations and rates
 #define INFINITE_DURATION       HUGE_VAL

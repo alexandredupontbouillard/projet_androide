@@ -30,7 +30,7 @@ Copyright 2015 Alain Jean-Marie, Jean-Michel Fourneau, Jean-Marc Vincent, Issam 
 #ifndef MARMOTESET_H
 #define MARMOTESET_H
 
-#include "../marmoteConstants.h"
+#include "marmoteConstants.h"
 #include <stdio.h>
 
 /**

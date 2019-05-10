@@ -305,4 +305,18 @@ solutionMDP* totalRewardMDP::policyIterationModified(double epsilon, int maxIter
 }
 
 
+// methods not implemented
+solutionMDP* totalRewardMDP::valueIterationGS(double epsilon, int maxIter){
+    printf("#valueIterationGS Not Implemented \t return NULL\n");
+    return NULL;
+}
   
+solutionMDP* totalRewardMDP::policyIteration(int maxIter) {
+    printf("# policyIteration Not Implemented \t return NULL\n");
+    return NULL;
+}   
+
+double* totalRewardMDP::policyCost(solutionMDP *policy,double epsilon,int maxIter){
+    printf("# policyCost Not Implemented \t return NULL\n");
+    return NULL;
+}   
