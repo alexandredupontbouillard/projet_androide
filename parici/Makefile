@@ -1,4 +1,4 @@
-CFLAGS=-ansi -Wall -fPIC -O3
+CFLAGS=-ansi -Wall -fPIC -g
 GPPCOMPILER=g++
 
 INCLUDEDIR=/header
@@ -87,7 +87,7 @@ compile_file: sparseMatrix.cpp
 compile_wrapper: pyMarmoteMDP_wrap.cxx
 	$(GPPCOMPILER) $(CFLAGS) -c $< -I/usr/include/python3.6 -I$(INCLUDEDIR)
 
-generate_module: sparseMatrix.o pyMarmoteMDP_wrap.o
+generate_module: pyMarmoteMDP_wrap.o
 	g++ -shared pyMarmoteMDP_wrap.o -o _pyMarmoteMDP.so -L$(MarmoteCoreDIR) $(LIBRARY)
 
 clean:

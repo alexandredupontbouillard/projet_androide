@@ -6,6 +6,8 @@
 #include "header/solutionMDP.h"
 #include "header/feedbackSolutionMDP.h"
 #include "header/genericMDP.h"
+#include "alglin.h"
+#include "values.h"
 #include "header/totalRewardMDP.h"
 
 %}

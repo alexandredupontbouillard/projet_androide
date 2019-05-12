@@ -15,7 +15,7 @@ Copyright 2015 Alain Jean-Marie, Jean-Michel Fourneau, Jean-Marc Vincent, Issam 
 
 #include <stdlib.h>
 #include "header/sparseMatrix.h"
-#include "Distribution/diracDistribution.h"
+#include "header/diracDistribution.h"
 
 #include <sstream>
 #include <string>
