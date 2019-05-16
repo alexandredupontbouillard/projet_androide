@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Feb 12 13:32:00 2019
-
 @author: alex0
 """
 import numpy as np
 import graphviz as pgv
+from totalReward import *
+from Instance_montagne import *
+from pyMarmoteMDP import *
 
 
 #Pour la lecture de fichier on utilisera le format suivant :
@@ -75,7 +77,7 @@ def modelMDP(actions,redirections,N_noeud,N_actions):
     for i in range(N_actions):
         cout[actions[i][1]-1] = actions[i][2]
         for j in range(len(redirections)):
-            if(redirections[j][0]-1==i):
+            if(redirections[j][0]-1==actions[i][1]-1):
             
                 liste_actions[i][actions[i][0]-1][redirections[j][1]-1]=redirections[j][2]
     return liste_actions,cout
@@ -92,13 +94,21 @@ def modelSTAUFFER(actions,redirections,N_noeud,N_actions):
     return matrice_action,matrice_p_s_a
     
 
+creeInstance(3,1,1,0.02,0.5,10)
 
- 
 actions,redirections,N_noeud,N_actions=lire_graphe('graphe_test.txt')
-
 #afficheGraphe(actions,redirections,N_noeud,N_actions)   
+liste_actions, cout = modelMDP(actions,redirections,N_noeud,N_actions)
 
-#liste_actions, cout = modelMDP(actions,redirections,N_noeud,N_actions)
-m1,m2 = modelSTAUFFER(actions,redirections,N_noeud,N_actions)
+sol = valueIteration(liste_actions,cout, maxIter = 1)
 
-    
+#x= sparseMatrix(4)
+#l_x = sparseMatrixVector(4)
+#l_x[0]= x
+#l_x[1] = x
+#l_x[2] = x
+#l_x[3] = x
+#y = sparseMatrix(4)
+#m1 = marmoteInterval(0,4-1)
+#m2 = marmoteInterval(0,4-1)
+#mdp1 = totalRewardMDP("min", m1, m2, l_x, y)
