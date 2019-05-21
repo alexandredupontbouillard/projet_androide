@@ -1,4 +1,4 @@
-CFLAGS=-ansi -Wall -fPIC -g
+CFLAGS=-ansi -Wall -fPIC -O3
 GPPCOMPILER=g++
 
 INCLUDEDIR=/header
@@ -12,17 +12,18 @@ DISTRIBS=Distribution diracDistribution  discreteDistribution geometricDistribut
 TRANSITIONS=sparseMatrix transitionStructure
 SETS=marmoteSet marmoteBox marmoteInterval 
 MDP=solutionMDP feedbackSolutionMDP genericMDP totalRewardMDP 
-
+UTILS = alglin
 OBJECTS=\
 	$(addsuffix .o, $(DISTRIBS) )  \
 	$(addsuffix .o, $(TRANSITIONS) )  \
 	$(addsuffix .o, $(SETS) ) \
-	$(addsuffix .o, $(MDP) ) 
+	$(addsuffix .o, $(MDP) ) \
+	$(addsuffix .o, $(UTILS))
 
  
 
 
-all: $(DISTRIBS) $(TRANSITIONS) $(SETS) $(MDP) libraries generate_wrapper compile_wrapper generate_module
+all: $(DISTRIBS) $(TRANSITIONS) $(SETS) $(MDP) $(UTILS) libraries generate_wrapper compile_wrapper generate_module
 
 ## le terme $< represente le premier fichier de dependance celui juste apres les deux points
 Distribution: Distribution.cpp
@@ -65,7 +66,8 @@ feedbackSolutionMDP: feedbackSolutionMDP.cpp
 totalRewardMDP : totalRewardMDP.cpp
 	$(GPPCOMPILER) $(CFLAGS) -c $< -I$(INCLUDEDIR)
 
-
+alglin : alglin.c
+	$(GPPCOMPILER) $(CFLAGS) -c $< -I$(INCLUDEDIR)
 #$@ represente le nom de la cible 
 testSP: testSP.cpp
 	$(GPPCOMPILER) $(CFLAGS) $< -o $@ -I$(INCLUDEDIR) -L$(MarmoteCoreDIR) $(LIBRARY) 

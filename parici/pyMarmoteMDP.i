@@ -6,12 +6,11 @@
 #include "header/solutionMDP.h"
 #include "header/feedbackSolutionMDP.h"
 #include "header/genericMDP.h"
-#include "alglin.h"
-#include "values.h"
 #include "header/totalRewardMDP.h"
-
+#include "alglin.h"
 %}
 
+%include "cpointer.i"
 %include "std_string.i"
 %include "std_vector.i"
 %include "header/solutionMDP_SWIG.h"
@@ -20,4 +19,7 @@
 %include "header/marmoteInterval_SWIG.h"
 %include "header/sparseMatrix_SWIG.h"
 %include "header/totalRewardMDP_SWIG.h"
+namespace std {
+   %template(sparseMatrixVector) vector<sparseMatrix*>;
+}
 
